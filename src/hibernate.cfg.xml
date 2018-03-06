@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+			"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+			"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<!-- 一个数据库对应一个sessionfactory -->
+	<session-factory>
+		<!-- 至少5大参数 ，4个hibernate核心参数 、1个数据库方言 -->
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="hibernate.connection.url">jdbc:mysql:///hibernate_day03?useUnicode=true&amp;characterEncoding=UTF-8</property>
+		<property name="hibernate.connection.username">root</property>
+		<property name="hibernate.connection.password">1234</property>
+		
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+		
+		<!-- 可选配置 -->
+		<!-- 在控制台上显示SQL语句 -->
+		<property name="hibernate.show_sql">true</property>
+		<!-- 格式化sql语句 -->
+		<property name="hibernate.format_sql">true</property>
+		<!-- 生成数据库的表结构
+                * create			:数据库有表,每次都会创建一个新的表.(测试时候)
+                * create-drop		:每次都会创建一个新的表，用完之后就删除掉.(测试时候)
+                * update			:如果数据库没有表，创建一个新表，如果有表，使用原有表.更新表结构
+                * validate		    :使用原有表，进行校验.
+		
+		 -->
+		<property name="hibernate.hbm2ddl.auto">update</property>
+		
+		<property name="hibernate.use_sql_comments">true</property>
+		
+		<!--绑定本地session  -->
+		<property name="hibernate.current_session_context_class">thread</property>
+		
+		<!-- 设置隔离级别 
+		 	* 1—Read uncommitted isolation
+            * 2—Read committed isolation
+            * 4—Repeatable read isolation
+            * 8—Serializable isolation
+		-->
+		<property name="hibernate.connection.isolation">8</property>
+		
+		<!-- <version name="version"/> -->
+		
+		<!-- 引入映射文件 -->
+		<mapping resource="com/hibertest/domain/Customer.hbm.xml"/>
+		<mapping resource="com/hibertest/domain/Linkman.hbm.xml"/>
+		
+		
+		
+		
+		
+		
+	</session-factory>
+
+</hibernate-configuration>
