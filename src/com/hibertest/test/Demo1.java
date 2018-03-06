@@ -10,6 +10,32 @@ import com.hibertest.uitls.HibernateUtils;
 
 public class Demo1 {
 
+	
+	/**
+	 * 单向关联
+	 * 保存客户-需要修改Customer.hbm.xml
+	 */
+	@Test
+	public void Run2(){
+		Session session = HibernateUtils.getCurrentSession();
+		Transaction tr = session.beginTransaction();
+		
+		Customer c = new Customer();
+		c.setCust_name("客户");
+		
+		Linkman l1 = new Linkman();
+		Linkman l2 = new Linkman();
+		l1.setLkm_name("联系人1");
+		l2.setLkm_name("联系人2");
+		 
+		c.getLinkmans().add(l1);
+		c.getLinkmans().add(l2);
+		
+		
+		session.save(c);
+		
+		tr.commit();
+	}
 	/**
 	 * 双向关联
 	 */
@@ -19,7 +45,7 @@ public class Demo1 {
 		Transaction tr = session.beginTransaction();
 		
 		Customer c = new Customer();
-		c.setCust_name("客户");
+		c.setCust_name("kehu");
 		
 		Linkman l1 = new Linkman();
 		Linkman l2 = new Linkman();
